@@ -18,26 +18,26 @@ function CalculatorLoan() {
       label: "Loan Term (Years)",
       unit: "Years",
     },
-    {
-      name: "Monthly Payment Amount",
-      type: "number",
-      label: "Monthly Payment Amount",
-      unit: "UGX",
-    },
-    {
-      name: "Total Interest Paid Over Loan Term",
-      type: "number",
-      label: "Total Interest Paid Over Loan Term",
-      unit: "UGX",
-    },
+    // {
+    //   name: "Monthly Payment Amount",
+    //   type: "number",
+    //   label: "Monthly Payment Amount",
+    //   unit: "UGX",
+    // },
+    // {
+    //   name: "Total Interest Paid Over Loan Term",
+    //   type: "number",
+    //   label: "Total Interest Paid Over Loan Term",
+    //   unit: "UGX",
+    // },
   ];
 
   const [inputValues, setInputValues] = useState({
     "Loan Amount": "",
     "Interest Rate": "",
     "Loan Term": "",
-    "Monthly Payment Amount": "0", // Default value
-    "Total Interest Paid Over Loan Term": "0", // Default value
+    // "Monthly Payment Amount": "0", // Default value
+    // "Total Interest Paid Over Loan Term": "0", // Default value
   });
 
   const calculateLoan = () => {
