@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 function Header() {
-  const navigation = ["Home", "Loans", "OtherServices", "CalculateLoans"];
+  const navigation = ["Home", "Loans", "CalculateLoans"];
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
