@@ -8,7 +8,7 @@ function CalculatorLoan() {
     { name: "Loan Amount", type: "number", label: "Loan Amount", unit: "UGX" },
     {
       name: "Interest Rate",
-      type: "text",
+      type: "number",
       label: "Annual Interest Rate",
       unit: "%",
     },
@@ -18,19 +18,8 @@ function CalculatorLoan() {
       label: "Loan Term (Years)",
       unit: "Years",
     },
-    // {
-    //   name: "Monthly Payment Amount",
-    //   type: "number",
-    //   label: "Monthly Payment Amount",
-    //   unit: "UGX",
-    // },
-    // {
-    //   name: "Total Interest Paid Over Loan Term",
-    //   type: "number",
-    //   label: "Total Interest Paid Over Loan Term",
-    //   unit: "UGX",
-    // },
   ];
+  const [errors, setErrors] = useState({});
 
   const [inputValues, setInputValues] = useState({
     "Loan Amount": "",
@@ -46,14 +35,37 @@ function CalculatorLoan() {
     const annualInterestRate = parseFloat(inputValues["Interest Rate"]);
     const loanTermInYears = parseFloat(inputValues["Loan Term"]);
 
-    // Check if input values are valid numbers
+    const newErrors = {};
+
+    // Check for invalid or empty data
     if (
       isNaN(loanAmount) ||
+      loanAmount <= 0 ||
       isNaN(annualInterestRate) ||
-      isNaN(loanTermInYears)
+      annualInterestRate < 0 ||
+      isNaN(loanTermInYears) ||
+      loanTermInYears <= 0
     ) {
-      // Handle invalid input values here, e.g., show an error message
-      console.error("Invalid input values");
+      alert("Please enter valid data for all fields.");
+      return;
+    }
+    // Validate input values
+    // if (isNaN(loanAmount) || loanAmount <= 0) {
+    //   newErrors["Loan Amount"] = "Loan Amount must be a positive number.";
+    // }
+
+    // if (isNaN(annualInterestRate) || annualInterestRate < 0) {
+    //   newErrors["Interest Rate"] =
+    //     "Interest Rate must be a non-negative number.";
+    // }
+
+    // if (isNaN(loanTermInYears) || loanTermInYears <= 0) {
+    //   newErrors["Loan Term"] = "Loan Term must be a positive number.";
+    // }
+
+    // Check if there are any validation errors
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
@@ -82,6 +94,8 @@ function CalculatorLoan() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
+    // Clear the error for the field when it is edited
+    setErrors({ ...errors, [name]: "" });
   };
 
   const handleSubmit = (e) => {
@@ -89,7 +103,6 @@ function CalculatorLoan() {
     // Call the loan calculation function
     calculateLoan();
   };
-
   return (
     <>
       <Header />

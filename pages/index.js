@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Cardo, Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
